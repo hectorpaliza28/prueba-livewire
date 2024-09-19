@@ -37,7 +37,6 @@ class PasoDos extends Component
             return;
         }
 
-        $this->flagPlanes = true;
         if(floatval($this->pagoContado) > 6000.0){
             $this->pagoMinimo = floatval($this->pagoContado * 0.50);
             $this->pagoMinimoQuince = $this->pagoMinimo;
@@ -57,7 +56,8 @@ class PasoDos extends Component
         $this->dispatch('radioPorcentaje', $radioPorcentaje);
         $this->dispatch('radiosFlag', $radiosFlag);
         $this->dispatch('minimoQuince', $this->pagoMinimoQuince);
-
+        $this->dispatch('pagoContado', $pagoContado);
+        
         if($pagoContado != null){
             $this->dispatch('pagoContado', $pagoContado);
         }

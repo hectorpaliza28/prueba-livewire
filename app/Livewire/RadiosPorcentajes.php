@@ -17,7 +17,8 @@ class RadiosPorcentajes extends Component
         'pagoInicial' => 'recibirPagoInicial',
         'radioPorcentaje' => 'recibirRadioPorcentaje',
         'radiosFlag' => 'toggleRadiosFlag',
-        'minimoQuince' => 'recibirPagoMinimoQuince'
+        'minimoQuince' => 'recibirPagoMinimoQuince',
+        'pagoContado' => 'recibirPagoContado'
     ];
 
     //LISTENERS
@@ -35,6 +36,9 @@ class RadiosPorcentajes extends Component
     
     public function recibirPagoMinimoQuince($pagoMinimoQuince){
         $this->pagoMinimoQuince = $pagoMinimoQuince;
+    }
+    public function recibirPagoContado($pagoContado){
+        $this->pago_contado = $pagoContado;
     }
     //LISTENERS
 
@@ -64,6 +68,8 @@ class RadiosPorcentajes extends Component
                 $this->pagoInicial = floatval($this->pago_contado * 0.50);
                 break;
         }
+        $this->dispatch('pagoInicial', $this->pagoInicial);
+        $this->dispatch('calcularPagosPrecioFinal');
     }
 
     public function modificarPago($opcion){
