@@ -10,10 +10,12 @@ class SeleccionarPlan extends Component
         'calcularPagosPrecioFinal' => 'calcularPagosPrecioFinal',
         'pagoInicial' => 'recibirPagoInicial',
         'pagoContado' => 'recibirPagoContado',
+        'cantidadAccesorios' => 'recibirCantidadAccesorios'
     ];
 
     public $pagoContado = null;
     public $pagoInicial = null;
+    public $cantidadAccesorios = 0;
     public $data = [
         [
             'id_plan' => 1,
@@ -61,6 +63,9 @@ class SeleccionarPlan extends Component
     public function recibirPagoContado($pagoContado){
         $this->pagoContado = $pagoContado;
     }
+    public function recibirCantidadAccesorios($cantidadAccesorios){
+        $this->cantidadAccesorios = $cantidadAccesorios;
+    }
     //LISTENERS
 
 
@@ -79,19 +84,19 @@ class SeleccionarPlan extends Component
         foreach($this->planesArray as $key => $plan){
             switch($key){
                 case 0:
-                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.8) - $this->pagoInicial) / 48);
+                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.8) + (floatval($this->cantidadAccesorios * 1.8)) - $this->pagoInicial) / 48);
                     $plan->precio_total = ceil($this->pagoContado * 1.8);
                     break;
                 case 1:
-                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.7) - $this->pagoInicial) / 36);
+                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.7) + (floatval($this->cantidadAccesorios * 1.7)) - $this->pagoInicial) / 36);
                     $plan->precio_total = ceil($this->pagoContado * 1.7);
                     break;
                 case 2:
-                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.6) - $this->pagoInicial) / 24);
+                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.6) + (floatval($this->cantidadAccesorios * 1.6)) - $this->pagoInicial) / 24);
                     $plan->precio_total = ceil($this->pagoContado * 1.6);
                     break;
                 case 3:
-                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.5) - $this->pagoInicial) / 12);
+                    $plan->precio_semana = ceil((floatval($this->pagoContado * 1.5) + (floatval($this->cantidadAccesorios * 1.5)) - $this->pagoInicial) / 12);
                     $plan->precio_total = ceil($this->pagoContado * 1.5);
                     break;
             }

@@ -88,7 +88,7 @@ class RadiosPorcentajes extends Component
                                                                    : $this->pago_contado;
                 break;
         }
-
-        //$this->emit('calcularPagosPrecioFinal', $this->pagoInicial);
+        $this->dispatch('pagoInicial', $this->pagoInicial);
+        $this->dispatch('calcularPagosPrecioFinal', $this->pagoInicial);
     }
 }

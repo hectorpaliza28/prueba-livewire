@@ -14,10 +14,7 @@ class ValorAccesorios extends Component
     }
 
     public function onBlurAgregarAccesoriosATotal(){
-
-    }
-
-    public function keyUpCalcularPagosPrecioFinal(){
-        
+        $this->dispatch('cantidadAccesorios', $this->totalAccesorios);
+        $this->dispatch('calcularPagosPrecioFinal');
     }
 }
